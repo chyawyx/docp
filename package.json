@@ -1,0 +1,49 @@
+{
+  "name": "docp",
+  "version": "0.7.0-test1",
+  "description": "a tool that exec javascript in markdown",
+  "main": "lib/index.js",
+  "bin": {
+    "docp": "lib/cli.js"
+  },
+  "homepage": "https://github.com/Cicel/docp",
+  "files": [
+    "lib",
+    "template"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc --build tsconfig.json && npm run theme",
+    "theme:watch": "sass --watch --no-source-map template/typora.vue.scss template/assets/typora.vue.css",
+    "theme": "sass --no-source-map template/typora.vue.scss template/assets/typora.vue.css",
+    "lint": "eslint src/** --quiet",
+    "lint:fix": "eslint src/*.ts --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cicel",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "commander": "^5.0.0",
+    "fs-extra": "^8.1.0",
+    "fs-monkey": "^1.0.0",
+    "glob": "^7.1.4",
+    "inquirer": "^7.1.0",
+    "jsdom": "^16.2.0",
+    "marked": "^0.7.0",
+    "memfs": "^2.16.1",
+    "mime": "^2.4.4",
+    "node-watch": "^0.6.3",
+    "typescript": "^3.8.3",
+    "unionfs": "^4.3.2",
+    "vinyl": "^2.2.0",
+    "vinyl-fs": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.0",
+    "@types/vinyl": "^2.0.4",
+    "@typescript-eslint/eslint-plugin": "^2.22.0",
+    "@typescript-eslint/parser": "^2.22.0",
+    "eslint": "^6.8.0"
+  }
+}

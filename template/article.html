@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="assets/typora.vue.css">
+  <link rel="stylesheet" href="assets/index.css">
+  <link rel="stylesheet" href="assets/prism.min.css">
+  <link rel="stylesheet" href="assets/prism-line-numbers.min.css">
+</head>
+
+<body class="unresolved">
+  <div class="markdown-body">
+  </div>
+  <div class="sidebar">
+    <div class="docp-menu"></div>
+    <div class="sidebar-bg"></div>
+  </div>
+  <script src="assets/prism.min.js"></script>
+  <script src="assets/prism-line-numbers.min.js"></script>
+</body>
+<script>
+  document.body.addEventListener('click', (e) => {
+    let target = e.target
+    // fliter
+    if (!target.classList.contains('docp-control-block')) {
+      return
+    }
+    // change btn state
+    if (target.classList.contains('unfold')) {
+      target.classList.remove('unfold')
+    } else {
+      target.classList.add('unfold')
+    }
+
+    let codeBlock = target.previousElementSibling
+    // change codeBlock state
+    if (codeBlock.classList.contains('show')) {
+      codeBlock.classList.remove('show')
+    } else {
+      codeBlock.classList.add('show')
+    }
+  })
+</script>
+
+</html>
