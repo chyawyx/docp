@@ -1,0 +1,107 @@
+<html lang="en"><head>
+  <title id="#docp-title"></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="assets/typora.vue.css">
+  <link rel="stylesheet" href="assets/index.css">
+  <link rel="stylesheet" href="assets/prism.min.css">
+  <link rel="stylesheet" href="assets/prism-line-numbers.min.css">
+</head>
+
+<body>
+  <div id="docp-menu">
+    <!-- display when max-width less 1024 -->
+    <div class="docp-menu-header">
+      <div class="docp-hamburger">
+        <div class="docp-line1"></div>
+        <div class="docp-line2"></div>
+        <div class="docp-line3"></div>
+      </div>
+    </div>
+  <ul>
+<li><a href="introduction.html" class="deep-2 current">Introduction</a></li>
+<li><a href="exec-js.html" class="deep-2">Execute javascript</a></li>
+<li><a href="plugin.html" class="deep-2">Create plugin</a></li>
+</ul></div>
+  <!-- className markdown-body used by themes style-->
+  <div id="docp-content" class="markdown-body"><h1 id="introduction">Introduction</h1>
+<p>Docp is a documentation tool that compiles markdown to a  website. It provides the ability to execute JavaScript which write in markdown. That means  you can preview any JavaScript even React or Vue！</p>
+<h2 id="install">Install</h2>
+<pre class="line-numbers language-shell"><code class="language-shell">$ npm install docp -g</code></pre>
+<blockquote>
+<p>node.js 10 or later needed</p>
+</blockquote>
+<h2 id="quick-start">Quick Start</h2>
+<p><code>Docp</code> is out of box. Specify the markdown file or directory and execute the following command:</p>
+<pre class="line-numbers language-shell"><code class="language-shell"># compile and preview current dir`s markdowns
+$ docp dev --rootDir ./
+
+# compile and preview helloworld.md
+$ docp dev --file ./helloworld.md</code></pre>
+<p>There will start a server locally and print page`s url.</p>
+<p><img src="http://img.tanghb.cn/dev.jpg" alt=""></p>
+<h3 id="config-file">config file</h3>
+<p>We specify the root dir through <code>--rootDir</code> before. Of course, you can also use a configuration file named <code>docp.config.js</code> to achieve the same effect.</p>
+<p>Use the following command or manually create it.</p>
+<pre class="line-numbers language-shell"><code class="language-shell">$ docp init</code></pre>
+<p> <code>docp.config.js</code> includes the same fields as cli options.</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript">// docp.config.js
+module.exports = {
+  "rootDir": "./",
+  "outDir": "./docsite",
+  "template": "~/template/article.html",
+  "plugins": {}
+}</code></pre>
+<p><strong>Fields description:</strong></p>
+<ul>
+<li>rootDir: Root directory of input files. Default to current directory.</li>
+<li>outDir: Directory for output files. Default to ./docsite.</li>
+<li>template: HTML template. Default to built-in template. You can replace it by change the template path.</li>
+<li>plugins: The plugins docp use to process codes.</li>
+</ul>
+<h2 id="output-website">Output website</h2>
+<p>After you complete your document, use the following command to compile markdowns to website and output to dir you specified by <code>outDir</code>.</p>
+<pre class="line-numbers language-shell"><code class="language-shell">$ docp build</code></pre>
+<p>The default dir is <code>./docsite</code>.</p>
+</div>
+  <p id="docp-support">Powered by <a rel="noopener noreferrer" href="https://github.com/cicel/docp" target="_blank">docp</a></p>
+  <script src="assets/prism.min.js"></script>
+  <script src="assets/prism-line-numbers.min.js"></script>
+
+<script>
+  // hamburger button when max-width less 1024
+  var menu = document.querySelector('#docp-menu')
+  var hamburger = document.querySelector('.docp-hamburger')
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      // add/remove active status to hamburger btn
+      if (hamburger.classList.contains('active')) {
+        hamburger.classList.remove('active')
+        menu.classList.remove('show')
+      } else {
+        hamburger.classList.add('active')
+        menu.classList.add('show')
+      }
+    })
+  }
+
+  document.body.addEventListener('click', (e) => {
+    let target = e.target
+    let codeBlock = target.previousElementSibling
+    // fliter
+    if (!target.classList.contains('docp-control-block')) {
+      return
+    }
+    // change btn state
+    if (target.classList.contains('active')) {
+      target.classList.remove('active')
+      codeBlock.classList.remove('show')
+    } else {
+      target.classList.add('active')
+      codeBlock.classList.add('show')
+    }
+  })
+</script>
+
+</body></html>
